@@ -33,17 +33,20 @@ console.log("cars", JSON.stringify(cars));
 // parsisiusti json duomenis
 
 // fetch('is kur siusti')
-
+// primas zingsins gaunam atsakym
 fetch("./data/cars.json")
-  .then((resposnse) => {
-    // primas zingsins gaunam atsakyma
-    console.log("geras", resposnse);
-    // ar nebuvo klaidu parsisiunciant duomenis (addrese)
-    if (resposnse.ok === true) {
-      console.log("atsakymas geras");
-    }
-    return resposnse.json();
-  })
+  .then((resposnse) => resposnse.json())
   .then((data) => {
+    // cia mes jau turim duomenis ir galima su jais dirbti
+    // data.push({ blue: "green" });
     console.log(data);
+  })
+  .catch((err) => console.warn(err));
+// gaudom atsiradusias klaidas jei tokiu yra
+
+// parsiusti puslapi is about.html
+fetch("./data/about.html")
+  .then((resp) => resp.text())
+  .then((data) => {
+    document.getElementById("app").innerHTML = data;
   });
