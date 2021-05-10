@@ -1,5 +1,7 @@
 "use strict"; // here we go again
 
+const loadBtn = document.getElementById("load");
+
 const person = {
   name: "John",
   lastName: "doe",
@@ -44,9 +46,14 @@ fetch("./data/cars.json")
   .catch((err) => console.warn(err));
 // gaudom atsiradusias klaidas jei tokiu yra
 
-// parsiusti puslapi is about.html
-fetch("./data/about.html")
-  .then((resp) => resp.text())
-  .then((data) => {
-    document.getElementById("app").innerHTML = data;
-  });
+function loadAbout() {
+  // parsiusti puslapi is about.html
+  fetch("./data/about.html")
+    .then((resp) => resp.text())
+    .then((data) => {
+      document.getElementById("app").innerHTML = data;
+    })
+    .catch((err) => console.log(err));
+}
+
+loadBtn.addEventListener("click", loadAbout);
